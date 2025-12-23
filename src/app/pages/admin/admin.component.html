@@ -1,0 +1,281 @@
+<div class="admin-container">
+  <div class="container py-5">
+    <!-- Header with Logout -->
+    <div class="admin-header text-center mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div></div>
+        <h1 class="display-4 fw-bold mb-0">
+          <i class="fas fa-cog me-3"></i>Admin Panel
+        </h1>
+        <button class="btn btn-danger logout-btn" (click)="logout()">
+          <i class="fas fa-sign-out-alt me-2"></i>Logout
+        </button>
+      </div>
+      <p class="lead text-muted">Manage Courses</p>
+    </div>
+
+    <!-- Course Form -->
+    <div class="course-form-card mb-5">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-gradient py-3">
+          <h3 class="mb-0 text-white">
+            <i class="fas fa-plus-circle me-2"></i>
+            {{ isEditing ? 'Edit Course' : 'Add New Course' }}
+          </h3>
+        </div>
+        <div class="card-body p-4">
+          <form (ngSubmit)="onSubmit()" #courseFormRef="ngForm">
+            <div class="row g-4">
+              <!-- Title -->
+              <div class="col-md-6">
+                <label for="title" class="form-label fw-bold">
+                  <i class="fas fa-heading me-2"></i>Course Title *
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  [(ngModel)]="courseForm.title"
+                  name="title"
+                  required
+                  placeholder="Enter course title"
+                />
+              </div>
+
+              <!-- Category -->
+              <div class="col-md-6">
+                <label for="category" class="form-label fw-bold">
+                  <i class="fas fa-folder me-2"></i>Category *
+                </label>
+                <select
+                  class="form-select"
+                  id="category"
+                  [(ngModel)]="courseForm.category"
+                  name="category"
+                  required
+                >
+                  <option value="web">Web Development</option>
+                  <option value="data">Data Science</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="design">Design</option>
+                </select>
+              </div>
+
+              <!-- Description -->
+              <div class="col-12">
+                <label for="description" class="form-label fw-bold">
+                  <i class="fas fa-align-left me-2"></i>Description *
+                </label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  [(ngModel)]="courseForm.description"
+                  name="description"
+                  rows="3"
+                  required
+                  placeholder="Enter course description"
+                ></textarea>
+              </div>
+
+              <!-- Level -->
+              <div class="col-md-4">
+                <label for="level" class="form-label fw-bold">
+                  <i class="fas fa-signal me-2"></i>Level *
+                </label>
+                <select
+                  class="form-select"
+                  id="level"
+                  [(ngModel)]="courseForm.level"
+                  name="level"
+                  required
+                >
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+              </div>
+
+              <!-- Duration -->
+              <div class="col-md-4">
+                <label for="duration" class="form-label fw-bold">
+                  <i class="fas fa-clock me-2"></i>Duration *
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="duration"
+                  [(ngModel)]="courseForm.duration"
+                  name="duration"
+                  required
+                  placeholder="e.g., 12 hours"
+                />
+              </div>
+
+              <!-- Price -->
+              <div class="col-md-4">
+                <label for="price" class="form-label fw-bold">
+                  <i class="fas fa-tag me-2"></i>Price *
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  [(ngModel)]="courseForm.price"
+                  name="price"
+                  required
+                  min="0"
+                  placeholder="Enter price"
+                />
+              </div>
+
+              <!-- Rating -->
+              <div class="col-md-4">
+                <label for="rating" class="form-label fw-bold">
+                  <i class="fas fa-star me-2"></i>Rating
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="rating"
+                  [(ngModel)]="courseForm.rating"
+                  name="rating"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  placeholder="0.0"
+                />
+              </div>
+
+              <!-- Students -->
+              <div class="col-md-4">
+                <label for="students" class="form-label fw-bold">
+                  <i class="fas fa-users me-2"></i>Students
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="students"
+                  [(ngModel)]="courseForm.students"
+                  name="students"
+                  min="0"
+                  placeholder="0"
+                />
+              </div>
+
+              <!-- Image URL -->
+              <div class="col-md-4">
+                <label for="image" class="form-label fw-bold">
+                  <i class="fas fa-image me-2"></i>Image URL
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="image"
+                  [(ngModel)]="courseForm.image"
+                  name="image"
+                  placeholder="assets/images/course.jpg"
+                />
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="col-12">
+                <div class="d-flex gap-3 justify-content-end">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancelEdit()"
+                    *ngIf="isEditing"
+                  >
+                    <i class="fas fa-times me-2"></i>Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="!courseFormRef.form.valid"
+                  >
+                    <i class="fas fa-save me-2"></i>
+                    {{ isEditing ? 'Update Course' : 'Add Course' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Courses List -->
+    <div class="courses-list">
+      <h3 class="mb-4 fw-bold">
+        <i class="fas fa-list me-2"></i>All Courses ({{ courses.length }})
+      </h3>
+      
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Level</th>
+              <th>Price</th>
+              <th>Rating</th>
+              <th>Students</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let course of courses">
+              <td>{{ course.id }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img
+                    [src]="course.image"
+                    alt="{{ course.title }}"
+                    class="course-thumb me-2"
+                  />
+                  <span class="fw-bold">{{ course.title }}</span>
+                </div>
+              </td>
+              <td>
+                <span class="badge bg-info">{{ course.category }}</span>
+              </td>
+              <td>
+                <span class="badge bg-secondary">{{ course.level }}</span>
+              </td>
+              <td class="fw-bold text-success">${{ course.price }}</td>
+              <td>
+                <i class="fas fa-star text-warning"></i>
+                {{ course.rating }}
+              </td>
+              <td>{{ course.students }}</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button
+                    class="btn btn-sm btn-outline-primary"
+                    (click)="editCourse(course)"
+                    title="Edit"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteCourse(course.id)"
+                    title="Delete"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="courses.length === 0" class="text-center py-5">
+        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+        <p class="text-muted">No courses available. Add your first course!</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="icon-wrapper">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h2>Admin Login</h2>
+      <p class="text-muted">Enter your credentials to access the admin panel</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <!-- Email Input -->
+      <div class="form-group">
+        <label for="email" class="form-label">
+          <i class="fas fa-envelope me-2"></i>Email Address
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="admin@brightmind.com"
+          required
+          autocomplete="username"
+        />
+      </div>
+
+      <!-- Password Input -->
+      <div class="form-group">
+        <label for="password" class="form-label">
+          <i class="fas fa-lock me-2"></i>Password
+        </label>
+        <div class="password-wrapper">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility()"
+            tabindex="-1"
+          >
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        {{ errorMessage }}
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn btn-login"
+        [disabled]="!loginForm.form.valid"
+      >
+        <i class="fas fa-sign-in-alt me-2"></i>
+        Login to Admin Panel
+      </button>
+    </form>
+
+    <!-- Back to Home -->
+    <div class="text-center mt-4">
+      <a routerLink="/" class="back-link">
+        <i class="fas fa-arrow-left me-2"></i>Back to Home
+      </a>
+    </div>
+  </div>
+</div>
