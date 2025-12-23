@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <div class="logo-container">
+        <i class="fas fa-brain logo-icon"></i>
+        <div class="logo-text">
+          <span class="logo-bright">Bright</span><span class="logo-mind">Mind</span>
+          <div class="logo-tagline">Learn Smarter</div>
+        </div>
+      </div>
+    </a>
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      (click)="toggleNavbar()"
+      [attr.aria-expanded]="!isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [class.show]="!isCollapsed">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/courses" routerLinkActive="active">Courses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link favorites-link" routerLink="/favorites" routerLinkActive="active">
+            <i class="fas fa-heart me-1"></i>My List
+            <span class="badge-count" *ngIf="favoritesCount > 0">{{ favoritesCount }}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isAuthenticated()">
+          <a class="nav-link admin-link" routerLink="/admin" routerLinkActive="active">
+            <i class="fas fa-cog me-1"></i>Admin
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+          <a class="nav-link admin-link" routerLink="/admin-login" routerLinkActive="active">
+            <i class="fas fa-sign-in-alt me-1"></i>Admin Login
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

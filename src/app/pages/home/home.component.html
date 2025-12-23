@@ -1,0 +1,121 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+    <div class="bubble bubble-4"></div>
+    <div class="bubble bubble-5"></div>
+    <div class="bubble bubble-6"></div>
+    <div class="floating-icon icon-1"><i class="fas fa-book"></i></div>
+    <div class="floating-icon icon-2"><i class="fas fa-graduation-cap"></i></div>
+    <div class="floating-icon icon-3"><i class="fas fa-laptop-code"></i></div>
+    <div class="floating-icon icon-4"><i class="fas fa-certificate"></i></div>
+  </div>
+  
+  <div class="container">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-8 mx-auto text-center">
+        <div class="hero-content">
+          <div class="badge-container mb-4">
+            <span class="hero-badge">
+              <i class="fas fa-star me-2"></i>Trusted by 50,000+ Students
+            </span>
+          </div>
+          <h1 class="hero-title mb-4">
+            Learn <span class="gradient-text">Without</span> Limits
+          </h1>
+          <p class="hero-subtitle mb-5">
+            Discover thousands of courses and advance your career with our comprehensive online learning platform.
+            <br>
+            <span class="highlight">Expert instructors, flexible schedules, and lifetime access.</span>
+          </p>
+          <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a routerLink="/courses" class="btn btn-hero-primary">
+              <i class="fas fa-rocket me-2"></i>Explore Courses
+            </a>
+            <a routerLink="/about" class="btn btn-hero-outline">
+              <i class="fas fa-info-circle me-2"></i>Learn More
+            </a>
+          </div>
+          <div class="hero-stats mt-5">
+            <div class="stat-item">
+              <i class="fas fa-book-open"></i>
+              <span>200+ Courses</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-users"></i>
+              <span>50K+ Students</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-star"></i>
+              <span>4.9 Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Courses Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="display-5 fw-bold">Featured Courses</h2>
+        <p class="lead text-muted">Handpicked courses to get you started on your learning journey</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" *ngFor="let course of featuredCourses">
+        <div class="card h-100 course-card">
+          <img [src]="course.image" class="card-img-top" [alt]="course.title">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ course.title }}</h5>
+            <p class="card-text text-muted">{{ course.description }}</p>
+            <div class="mt-auto">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-success">{{ course.level }}</span>
+                <span class="text-warning">
+                  <i class="fas fa-star" *ngFor="let star of getRatingStars(course.rating)"></i>
+                  <span class="ms-1">{{ course.rating }}</span>
+                </span>
+              </div>
+              <button class="btn btn-primary w-100">Enroll Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="py-5 bg-primary text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3 mb-4">
+        <i class="fas fa-users fa-3x mb-3"></i>
+        <h3 class="fw-bold">50,000+</h3>
+        <p>Active Students</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <i class="fas fa-book fa-3x mb-3"></i>
+        <h3 class="fw-bold">200+</h3>
+        <p>Online Courses</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <i class="fas fa-chalkboard-teacher fa-3x mb-3"></i>
+        <h3 class="fw-bold">150+</h3>
+        <p>Expert Instructors</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <i class="fas fa-certificate fa-3x mb-3"></i>
+        <h3 class="fw-bold">10,000+</h3>
+        <p>Certificates Issued</p>
+      </div>
+    </div>
+  </div>
+</section>

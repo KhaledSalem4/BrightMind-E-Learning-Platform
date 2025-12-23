@@ -1,0 +1,105 @@
+<!-- Page Header -->
+<section class="page-header bg-primary text-white py-5 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="display-4 fw-bold">Our Courses</h1>
+        <p class="lead">Discover a wide range of courses designed to help you achieve your learning goals</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Section -->
+<section class="py-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+          <button 
+            class="btn btn-outline-primary filter-btn" 
+            [class.active]="selectedCategory === 'all'"
+            (click)="filterCourses('all')">
+            All Courses
+          </button>
+          <button 
+            class="btn btn-outline-primary filter-btn" 
+            [class.active]="selectedCategory === 'web'"
+            (click)="filterCourses('web')">
+            Web Development
+          </button>
+          <button 
+            class="btn btn-outline-primary filter-btn" 
+            [class.active]="selectedCategory === 'data'"
+            (click)="filterCourses('data')">
+            Data Science
+          </button>
+          <button 
+            class="btn btn-outline-primary filter-btn" 
+            [class.active]="selectedCategory === 'marketing'"
+            (click)="filterCourses('marketing')">
+            Digital Marketing
+          </button>
+          <button 
+            class="btn btn-outline-primary filter-btn" 
+            [class.active]="selectedCategory === 'design'"
+            (click)="filterCourses('design')">
+            Design
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Courses Grid -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" *ngFor="let course of displayedCourses">
+        <div class="card h-100 course-card">
+          <!-- Action Icons -->
+          <div class="course-actions">
+            <button 
+              class="action-btn favorite-btn" 
+              [class.active]="course.isFavorite"
+              (click)="toggleFavorite(course.id, $event)"
+              title="Add to Favorites">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button 
+              class="action-btn watched-btn" 
+              [class.active]="course.isWatched"
+              (click)="toggleWatched(course.id, $event)"
+              title="Mark as Watched">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          
+          <img [src]="course.image" class="card-img-top" [alt]="course.title">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ course.title }}</h5>
+            <p class="card-text text-muted">{{ course.description }}</p>
+            <div class="mt-auto">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-success">{{ course.level }}</span>
+                <span class="text-warning">
+                  <i class="fas fa-star" *ngFor="let star of getRatingStars(course.rating)"></i>
+                  <span class="ms-1">{{ course.rating }}</span>
+                </span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted"><i class="fas fa-clock me-1"></i>{{ course.duration }}</span>
+                <span class="text-muted"><i class="fas fa-users me-1"></i>{{ course.students }} students</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="h5 mb-0 text-primary">\${{ course.price }}</span>
+                <button class="btn btn-primary">Enroll Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

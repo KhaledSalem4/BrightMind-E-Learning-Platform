@@ -1,0 +1,120 @@
+<section class="page-header bg-primary text-white py-5 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="display-4 fw-bold">Contact Us</h1>
+        <p class="lead">Get in touch with our team - we're here to help you succeed</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-5">
+        <div class="card shadow">
+          <div class="card-body p-5">
+            <h3 class="fw-bold mb-4">Send us a Message</h3>
+            <form (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label">First Name *</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="firstName" 
+                    [(ngModel)]="contactForm.firstName"
+                    name="firstName"
+                    required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label">Last Name *</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="lastName" 
+                    [(ngModel)]="contactForm.lastName"
+                    name="lastName"
+                    required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address *</label>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  id="email" 
+                  [(ngModel)]="contactForm.email"
+                  name="email"
+                  required>
+              </div>
+              <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <select 
+                  class="form-select" 
+                  id="subject" 
+                  [(ngModel)]="contactForm.subject"
+                  name="subject">
+                  <option value="">Select a subject</option>
+                  <option value="general">General Inquiry</option>
+                  <option value="course">Course Information</option>
+                  <option value="technical">Technical Support</option>
+                  <option value="billing">Billing Question</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <label for="message" class="form-label">Message *</label>
+                <textarea 
+                  class="form-control" 
+                  id="message" 
+                  rows="5" 
+                  [(ngModel)]="contactForm.message"
+                  name="message"
+                  required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg w-100">
+                <i class="fas fa-paper-plane me-2"></i>Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card shadow mb-4">
+          <div class="card-body p-4">
+            <h5 class="fw-bold mb-4">Contact Information</h5>
+            <div class="mb-3">
+              <i class="fas fa-envelope text-primary me-2"></i>
+              <strong>Email:</strong><br>
+              <span class="ms-4">info&#64;brightmind.com</span>
+            </div>
+            <div class="mb-3">
+              <i class="fas fa-phone text-primary me-2"></i>
+              <strong>Phone:</strong><br>
+              <span class="ms-4">+1 (555) 123-4567</span>
+            </div>
+            <div class="mb-3">
+              <i class="fas fa-map-marker-alt text-primary me-2"></i>
+              <strong>Address:</strong><br>
+              <span class="ms-4">123 Learning St<br>Education City, EC 12345</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow">
+          <div class="card-body p-4">
+            <h5 class="fw-bold mb-4">Follow Us</h5>
+            <div class="d-flex gap-3">
+              <a href="#" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="btn btn-outline-primary"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="btn btn-outline-primary"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="btn btn-outline-primary"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
